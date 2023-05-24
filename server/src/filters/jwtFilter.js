@@ -8,6 +8,7 @@ function checkToken(req, res, next) {
   const payload = verifyToken(token);
 
   if (payload.username) {
+    req.user = payload.username;
     next();
   }
 }

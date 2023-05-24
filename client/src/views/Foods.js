@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import userService from "../service/userService.js";
 import { fetchDb } from "../utils/dbUtility";
 
 function Foods(props) {
+  const [validUsername, setValidUsername] = useState(false);
   const [data, setData] = useState([]);
   let dbData = fetchDb(props.data);
   useEffect(() => {
@@ -19,7 +21,6 @@ function Foods(props) {
     const newArray = props.note;
     newArray.push(item);
     props.setNote(newArray);
-    console.log(props.note);
   }
 
   return (
@@ -42,6 +43,7 @@ function Foods(props) {
               </div>
               <p>{foodItem.price} sek</p>
               <button
+                data-testid="order-btn"
                 onClick={() => {
                   submitArticle(foodItem);
                 }}>

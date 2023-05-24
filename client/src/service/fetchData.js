@@ -9,4 +9,10 @@ async function fetchJson(adress, method, data) {
   };
   return await fetch(adress, option);
 }
-export default fetchJson;
+
+function fetchFormData(form) {
+  const formData = new formData(form);
+
+  return Object.fromEntries(formData);
+}
+export default { fetchJson, fetchFormData };

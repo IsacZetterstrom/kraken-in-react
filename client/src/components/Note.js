@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+// import User from "../../../server/src/database/models/user";
 
 function Note(props) {
   const [totalSum, setTotalSum] = useState();
+  // const [validUsername, setValidUsername] = useState(false);
 
   const sumOfNote = () => {
     let tempPrice = 0;
@@ -34,17 +36,26 @@ function Note(props) {
     props.setNote(result);
   };
 
+  const addCredits = () => {};
+
   return (
     <div data-testid="note-container">
-      <h2>Reciept</h2>
+      {sessionStorage.getItem("jwtToken") !== null && (
+        <form>
+          <input />
+          <button data-testid="add-credit">Add Credit</button>
+        </form>
+      )}
+      <h2>Receipt</h2>
       {props.note &&
         props.note.map((item, index) => {
           return (
-            <article key={item.id + index}>
+            <article data-testid="food-article" key={item.id + index}>
               <h2>{item.name}</h2>
               <p>{item.description}</p>
               <p>{item.price}</p>
               <button
+                data-testid="remove-food"
                 onClick={() => {
                   removeItem(item);
                 }}>

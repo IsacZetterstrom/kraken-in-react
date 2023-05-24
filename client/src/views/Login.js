@@ -6,6 +6,7 @@ function Login() {
 
   const fetchUserData = async (event) => {
     event.preventDefault();
+
     const userInput = new FormData(event.target);
 
     const formValue = Object.fromEntries(userInput);
@@ -20,6 +21,7 @@ function Login() {
       const data = await response.json();
       console.log(data);
       sessionStorage.setItem("jwtToken", data.token);
+      sessionStorage.setItem("username", data.username);
       navigate("/");
     } else {
       const data = await response.text();
@@ -30,8 +32,8 @@ function Login() {
   return (
     <div>
       <form onSubmit={fetchUserData}>
-        <input name="username" />
-        <input name="password" />
+        <input placeholder="Username..." name="username" />
+        <input placeholder="Password..." name="password" />
         <button type="submit">Logga in</button>
       </form>
     </div>

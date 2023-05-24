@@ -9,7 +9,6 @@ function Nav(props) {
 
   useEffect(() => {
     if (props.data !== undefined) {
-      console.log(props);
       fetchDb(props.data);
       navigation("/menu");
     }
